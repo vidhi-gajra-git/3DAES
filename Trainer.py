@@ -48,7 +48,13 @@ class Trainer(object):
             
             parameters = self.get_parameters()
             # print(f"Parameters: {parameters}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            utils.clip_grad_value_(self.get_parameters(), 0.00001)
+            for param in self.get_parameters():
+                if param.grad is not None:
+                    param.grad.data.clamp_(-0.00001, 0.00001)
+                else :
+                     print(f"None!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+            # utils.clip_grad_value_(self.get_parameters(), 0.00001)
             loss.backward()
             optimizer.step()
             losses.append(loss.item())
