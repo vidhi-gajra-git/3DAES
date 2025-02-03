@@ -14,7 +14,7 @@ class Trainer(object):
     """
     def __init__(self, model: torch.nn.Module):
         super().__init__()
-        self.model = model.to(device)
+        self.model = model.to('cuda')
 
     # 训练过程
     def train(self, data_loader: DataLoader, optimizer: optimizer_, criterion, device: torch.device, monitor=None):
