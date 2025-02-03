@@ -1,4 +1,5 @@
 import torch
+from tqdm import tqdm
 import numpy as np
 from torch.utils.data import DataLoader
 from torch.optim import optimizer as optimizer_
@@ -31,7 +32,9 @@ class Trainer(object):
         criterion.to(device)
         losses = []
         grads = []
-        for step, (x, target) in enumerate(data_loader):
+        print(f"*****Total batches ==> {data_loader.shape[0]}****** " )
+        for step, (x, target) in tqdm(enumerate(data_loader)):
+           
             x, target = x.to(device), target.to(device)
             # 维度变化
             x = x.permute((0, 3, 1, 2)).unsqueeze(1)
@@ -60,7 +63,7 @@ class Trainer(object):
             # 监控器
             if monitor is not None:
                 grads.append(monitor(self.get_parameters()))
-            if (step+1) % 5 == 0:
+            if (step+1) % 100 == 0:
                 print('batch:{} loss:{:.6f}'.format(step, loss.item()))
         if len(grads) > 0:
             grads_mean = np.mean(grads)
