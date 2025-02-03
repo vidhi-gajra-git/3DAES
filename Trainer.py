@@ -47,6 +47,8 @@ class Trainer(object):
             # 梯度裁剪
             for param in self.model.parameters():
                     param.requires_grad = True
+            parameters = self.get_parameters()
+            print(f"Parameters: {parameters}")
             utils.clip_grad_value_(self.get_parameters(), 0.00001)
             loss.backward()
             optimizer.step()
