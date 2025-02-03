@@ -14,7 +14,7 @@ class Trainer(object):
     """
     def __init__(self, model: torch.nn.Module):
         super().__init__()
-        self.model = model
+        self.model = model.to(device)
 
     # 训练过程
     def train(self, data_loader: DataLoader, optimizer: optimizer_, criterion, device: torch.device, monitor=None):
@@ -25,7 +25,7 @@ class Trainer(object):
             encoder.to(device)
             decoder.to(device)
         else:
-            self.model.to(device)
+            # self.model.to(device)
             encoder = self.model[0]
             decoder = self.model[1]
         criterion.to(device)
