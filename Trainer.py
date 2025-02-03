@@ -48,6 +48,8 @@ class Trainer(object):
             for param in self.model.parameters():
                 if param.grad is not None:
                     print(param.grad.device)
+                else:
+                    print("No paramm.grad found!!!!!!!!!!!!!!!!!!")
             utils.clip_grad_value_(self.get_parameters(), 0.00001)
             loss.backward()
             optimizer.step()
