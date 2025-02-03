@@ -45,8 +45,7 @@ class Trainer(object):
             # 反向传播
             optimizer.zero_grad()
             # 梯度裁剪
-            for param in self.model.parameters():
-                    param.requires_grad = True
+            
             parameters = self.get_parameters()
             print(f"Parameters: {parameters}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             utils.clip_grad_value_(self.get_parameters(), 0.00001)
@@ -91,7 +90,7 @@ class Trainer(object):
         return np.mean(losses)
 
     def get_parameters(self):
-        return [param for param in self.model.parameters() if param.requires_grad]
+        return [param for param in self.model.parameters() ]
 
 
 # random
