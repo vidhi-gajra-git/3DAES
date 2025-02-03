@@ -64,7 +64,7 @@ if __name__ == '__main__':
     # gt = m[info['label_key']] --> uncomment for other dataset 
     gt = m['paviaU_gt']
     
-    data, gt = data.astype(np.float), gt.astype(np.int32)
+    data, gt = data.astype(np.float64), gt.astype(np.int32)
     # 数据标准化
     h, w, c = data.shape
     data = data.reshape((h*w, c))
