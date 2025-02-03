@@ -53,9 +53,14 @@ if __name__ == '__main__':
     viz.line([0.], [0], win='{}_encoder_grad'.format(dataset_name), opts={'title': '{}_grad'.format(dataset_name)})
     # 加载数据集
     info = DatasetInfo.info[dataset_name]
-    m = loadmat('data/{0}/{0}.mat'.format(dataset_name))
+    cwd = os.getcwd()
+
+# Construct a relative path to your file
+    file_path = os.path.join(cwd, '3DAES','data', 'PaviaU', 'PaviaU.mat')
+    m = loadmat(file_path)
     data = m[info['data_key']]
-    m = loadmat('data/{0}/{0}_gt.mat'.format(dataset_name))
+    file_path = os.path.join(cwd, '3DAES','data', 'PaviaU', 'PaviaU_gt.mat')
+    m = loadmat(file_path)
     gt = m[info['label_key']]
     data, gt = data.astype(np.float), gt.astype(np.int32)
     # 数据标准化
