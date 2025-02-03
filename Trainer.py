@@ -47,7 +47,7 @@ class Trainer(object):
             # 梯度裁剪
             
             parameters = self.get_parameters()
-            print(f"Parameters: {parameters}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+            # print(f"Parameters: {parameters}!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
             utils.clip_grad_value_(self.get_parameters(), 0.00001)
             loss.backward()
             optimizer.step()
