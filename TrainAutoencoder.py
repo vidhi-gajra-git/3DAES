@@ -13,7 +13,7 @@ import argparse
 from visdom import Visdom
 from sklearn.preprocessing import scale
 from Monitor import GradMonitor
-from visualize import visualize, reduce_dimension_
+# from visualize import visualize, reduce_dimension_
 
 isExists = lambda path: os.path.exists(path)
 EPOCHS = 10
