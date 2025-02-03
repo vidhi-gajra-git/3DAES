@@ -46,10 +46,7 @@ class Trainer(object):
             optimizer.zero_grad()
             # 梯度裁剪
             for param in self.model.parameters():
-                if param.grad is not None:
-                    print(param.grad.device)
-                else:
-                    print("No paramm.grad found!!!!!!!!!!!!!!!!!!")
+                    param.requires_grad = True
             utils.clip_grad_value_(self.get_parameters(), 0.00001)
             loss.backward()
             optimizer.step()
