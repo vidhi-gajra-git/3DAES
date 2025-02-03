@@ -45,7 +45,7 @@ class Trainer(object):
             # 反向传播
             optimizer.zero_grad()
             # 梯度裁剪
-            for param in model.parameters():
+            for param in self.model.parameters():
                 if param.grad is not None:
                     print(param.grad.device)
             utils.clip_grad_value_(self.get_parameters(), 0.00001)
