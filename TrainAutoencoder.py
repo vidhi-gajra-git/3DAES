@@ -59,9 +59,11 @@ if __name__ == '__main__':
     file_path = os.path.join(cwd, '3DAES','data', 'PaviaU', 'PaviaU.mat')
     m = loadmat(file_path)
     data = m[info['data_key']]
-    file_path = os.path.join(cwd, '3DAES','data', 'PaviaU', 'PaviaU_gt.mat')
-    m = loadmat(file_path)
-    gt = m[info['label_key']]
+    file_path2 = os.path.join(cwd, '3DAES','data', 'PaviaU', 'PaviaU_gt.mat')
+    m = loadmat(file_path2)
+    # gt = m[info['label_key']] --> uncomment for other dataset 
+    gt = m['paviaU_gt']
+    
     data, gt = data.astype(np.float), gt.astype(np.int32)
     # 数据标准化
     h, w, c = data.shape
