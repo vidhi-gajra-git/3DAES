@@ -19,7 +19,7 @@ isExists = lambda path: os.path.exists(path)
 EPOCHS = 10
 LR = 1e-1
 BATCHSZ = 128
-NUM_WORKERS = 10
+NUM_WORKERS = 4
 SEED = 666
 torch.manual_seed(SEED)
 DEVICE = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
