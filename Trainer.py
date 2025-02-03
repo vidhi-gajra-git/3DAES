@@ -32,7 +32,7 @@ class Trainer(object):
         criterion.to(device)
         losses = []
         grads = []
-        print(f"*****Total batches ==> {data_loader.shape[0]}****** " )
+        print(f"*****Total batches ==> {data_loader[0].size}****** " )
         for step, (x, target) in tqdm(enumerate(data_loader)):
            
             x, target = x.to(device), target.to(device)
