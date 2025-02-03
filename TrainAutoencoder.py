@@ -22,7 +22,7 @@ BATCHSZ = 128
 NUM_WORKERS = 10
 SEED = 666
 torch.manual_seed(SEED)
-# DEVICE = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
+DEVICE = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
 viz = Visdom(port=17000)
 # SAVE_PATH = 'models/paviaU/encoder'
 PATCH_SIZE = 19
@@ -39,12 +39,14 @@ if __name__ == '__main__':
     arg = parser.parse_args()
     dataset_name = arg.name
     gpu_id = arg.gpu
-    if isinstance(gpu_id, list) and len(gpu_id) > 1:
-        device = [torch.device('cuda:{}'.format(id)) for id in gpu_id]
-    elif isinstance(gpu_id, list) and len(gpu_id) == 1:
-        device = torch.device('cuda:{}'.format(gpu_id[0]))
-    else:
-        device = torch.device('cuda:{}'.format(gpu_id))
+    # DEVICE = torch.device('cuda:0') if torch.cuda.is_available() else torch.device('cpu')
+    device =DEVICE 
+    # if isinstance(gpu_id, list) and len(gpu_id) > 1:
+    #     device = [torch.device('cuda:{}'.format(id)) for id in gpu_id]
+    # elif isinstance(gpu_id, list) and len(gpu_id) == 1:
+    #     device = torch.device('cuda:{}'.format(gpu_id[0]))
+    # else:
+    #     device = torch.device('cuda:{}'.format(gpu_id))
     # 保存路径
     save_path = 'models/{}/encoder3_{}_{}'.format(dataset_name, HIDDEN_SIZE, PATCH_SIZE)
     # 绘画loss, mse_loss和constrative_loss图
