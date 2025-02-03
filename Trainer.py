@@ -91,7 +91,7 @@ class Trainer(object):
         return np.mean(losses)
 
     def get_parameters(self):
-        return self.model.parameters()
+        return [param for param in self.model.parameters() if param.requires_grad]
 
 
 # random
