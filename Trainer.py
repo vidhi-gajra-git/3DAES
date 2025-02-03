@@ -14,7 +14,7 @@ class Trainer(object):
     """
     def __init__(self, model: torch.nn.Module):
         super().__init__()
-        self.model = model.to('cuda')
+        self.model = model
 
     # 训练过程
     def train(self, data_loader: DataLoader, optimizer: optimizer_, criterion, device: torch.device, monitor=None):
@@ -25,7 +25,7 @@ class Trainer(object):
             encoder.to(device)
             decoder.to(device)
         else:
-            # self.model.to(device)
+            self.model.to(device)
             encoder = self.model[0]
             decoder = self.model[1]
         criterion.to(device)
@@ -45,6 +45,9 @@ class Trainer(object):
             # 反向传播
             optimizer.zero_grad()
             # 梯度裁剪
+            for param in model.parameters():
+                if param.grad is not None:
+                    print(param.grad.device)
             utils.clip_grad_value_(self.get_parameters(), 0.00001)
             loss.backward()
             optimizer.step()
